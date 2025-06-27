@@ -5,10 +5,10 @@ file/folder dependencies:
 pip dependencies:
     - pillow
     - geopy
-    - exif
+    - piexif
 """
-from geopy.geocoders import Nominatim
 from PIL import Image, ExifTags, ImageDraw, ImageFont, ImageOps
+from geopy.geocoders import Nominatim
 import piexif
 import sys
 import os
@@ -86,13 +86,15 @@ class location:
     def __str__(self) -> str:
         return f"{self.getCityState()}\n{self.getCountry()}"
         
-def getImageData(img: Image.Image) -> dict[str, bool|time|location]:
+# def getImageData(img: Image.Image) -> dict[str, bool|time|location]:
+def getImageData(img: Image.Image) -> dict:
     exif = {
         ExifTags.TAGS[k]: v
         for k, v in img._getexif().items()
         if k in ExifTags.TAGS
     }
-    out: dict[str, bool|time|location] = {}
+    # out: dict[str, bool|time|location] = {}
+    out: dict = {}
     if exif['Orientation'] == 6:
         out['turn'] = True
     else:
