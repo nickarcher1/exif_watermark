@@ -8,4 +8,6 @@
 4. Run `git clone https://github.com/nickarcher1/exif_watermark.git`
 
 6. Put your images you want to watermark in a folder (<pic_folder_name>), then put that folder in **exif_watermark** folder that got created.
-8. Run `python3 exif_watermark.py <pic_folder_name>`
+7. Run `cd exif_watermark`
+8. Run `open .`
+9. Run `python3 exif_watermark.py <pic_folder_name>`
