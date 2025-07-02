@@ -2,7 +2,7 @@ from dependencies.stamping_functions import get_image_data, add_stamps_to_photos
 from PIL import Image, ImageOps, ImageTk
 import piexif
 import os
-import tkinter as tk
+# import tkinter as tk
 
 def print_completion_summary(files: list[str], missing_time: list[str], missing_loc: list[str]):
     if len(files) != 0:
