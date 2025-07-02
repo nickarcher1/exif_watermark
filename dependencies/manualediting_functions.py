@@ -58,12 +58,15 @@ def variableStamp(path: str, needLoc: bool, needTime: bool, out_folder_name: str
 
     add_stamps_to_photos(img, dat)
 
-    exif_dict = piexif.load(exif_bytes)                                     # Load exif data
-    if piexif.ImageIFD.Orientation in exif_dict["0th"]:
-        exif_dict["0th"][piexif.ImageIFD.Orientation] = 1                   # Change orientation to be known as 'stored correctly'
-    exif_bytes = piexif.dump(exif_dict)                                     # Reload edited exif data
+    if not (needLoc and needTime):
+        exif_dict = piexif.load(exif_bytes)                                     # Load exif data
+        if piexif.ImageIFD.Orientation in exif_dict["0th"]:
+            exif_dict["0th"][piexif.ImageIFD.Orientation] = 1                   # Change orientation to be known as 'stored correctly'
+        exif_bytes = piexif.dump(exif_dict)                                     # Reload edited exif data
 
-    img.save(f"{os.path.dirname(path)}{os.sep}{out_folder_name}{os.sep}{os.path.basename(path)}", exif=exif_bytes)                                      # Save file, with edited exif data
+        img.save(f"{os.path.dirname(path)}{os.sep}{out_folder_name}{os.sep}{os.path.basename(path)}", exif=exif_bytes) # Save file, with edited exif data
+    else:
+        img.save(f"{os.path.dirname(path)}{os.sep}{out_folder_name}{os.sep}{os.path.basename(path)}")
 
 def manual_mode(no_metadata: list[str], missing_time: list[str], missing_loc: list[str], out_folder_name: str):
     for path in no_metadata:
