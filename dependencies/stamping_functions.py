@@ -53,6 +53,9 @@ def add_stamps_to_photos(img: Image.Image, dat: dict) -> tuple[bool, bool]:
     x_position = image_width - text_width - margin
     y_position = image_height - text_height - margin
 
+    # tbox = draw.textbbox((x_position, y_position), watermark, font=font)
+    # draw.rectangle(tbox, fill=(0,0,0,25))
+
     draw.text((x_position, y_position), watermark, fill=(255, 255, 255), font=font) # White color for the timestamp
     return t, l
 

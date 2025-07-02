@@ -45,8 +45,11 @@ def variableStamp(path: str, needLoc: bool, needTime: bool, out_folder_name: str
     
     img = ImageOps.exif_transpose(init_img)                                 # Will transpose if needed
     imgWindow(img)
-
-    dat = get_image_data(init_img, path)                                    # pulls exif time, location, and rotation data
+    if not (needLoc and needTime):
+        dat = get_image_data(init_img, path)                                # pulls exif time, location, and rotation data
+    else:
+        dat = {}
+        dat['turn'] = False
 
     if needLoc:
         dat['location'] = input(f"{path}: What city/state/country would you like to show on this image? ")
