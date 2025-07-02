@@ -18,13 +18,19 @@ def main():
         print("ERROR: too many or too few cmd arguments.")
         return
     
-    non_stamped_files, missing_time, missing_loc = stamp_all_photos_in_folder(sys.argv[1])
+    picture_folder_path = sys.argv[1]
+    OUT_FOLDER_NAME = 'WATERMARKED'
+
+    non_stamped_files, missing_time, missing_loc = stamp_all_photos_in_folder(picture_folder_path, OUT_FOLDER_NAME)
 
     print_completion_summary(non_stamped_files, missing_time, missing_loc)
 
     resolve = getYesNo("Would you like to resolve the missing stamps?")
     if resolve:
-        manual_mode(non_stamped_files, missing_time, missing_loc)
+        manual_mode(non_stamped_files, missing_time, missing_loc, OUT_FOLDER_NAME)
+
+
+    # Add bkrnd
 
 if __name__ == "__main__":
     main()

@@ -82,11 +82,11 @@ def stamp_jpg(path: str, out_folder_path: str) -> bool:
     img.save(newpath, exif=exif_bytes)                                      # Save file, with edited exif data
     return hastime, hasloc
 
-def stamp_all_photos_in_folder(folder_path: str):
+def stamp_all_photos_in_folder(folder_path: str, out_folder_name: str):
     non_stamped_files = []
     missing_time = []
     missing_loc = []
-    out_folder = f"{folder_path}{os.sep}WATERMARKED"
+    out_folder = f"{folder_path}{os.sep}{out_folder_name}"
     file_paths = []
     for file in os.listdir(folder_path):
         filepath = os.path.join(folder_path, file)
