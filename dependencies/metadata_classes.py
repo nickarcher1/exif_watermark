@@ -31,7 +31,8 @@ class time:
         return f"{adjusted_hour}:{self.minute} {am_pm}  {self.day}/{self.month}/{self.year}"
 
     def __str__(self) -> str:
-        return self.getMuricanTimestamp()
+        # return self.getMuricanTimestamp()
+        return f"{self.day}/{self.month}/{self.year}"
 
 class location:
     def __init__(self, loc_data: dict[int, tuple]):
